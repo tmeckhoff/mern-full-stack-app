@@ -72,7 +72,7 @@ class AddEmployeeComponent extends Component {
 
 AddEmployeeComponent.propTypes = {
     employee: PropTypes.object,
-    getAllEmployees: PropTypes.func
+    addNewAployee: PropTypes.func
 };
 
 
