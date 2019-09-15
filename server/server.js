@@ -28,21 +28,14 @@ router.get('/employees', (req, res) => {
 });
 
 router.post('/employees', (req, res) => {
-    let data = new Data();
+    const employee = new Employee(req.body);
 
-    const { id, message } = req.body;
-
-    if ((!id && id !== 0) || !message) {
-        return res.json({
-            success: false,
-            error: 'INVALID INPUTS',
-        });
-    }
-    data.message = message;
-    data.id = id;
-    data.save((err) => {
-        if (err) return res.json({ success: false, error: err });
-        return res.json({ success: true });
+    employee.save((err, employee) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(employee);
+        }
     });
 });
 
