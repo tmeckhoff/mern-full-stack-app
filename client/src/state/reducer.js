@@ -2,8 +2,7 @@ import { combineReducers } from 'redux';
 import { GET_EMPLOYEES, ADD_EMPLOYEE } from './actions';
 
 const initialState = {
-    employees: [],
-    employee: {}
+    employees: []
 };
 
 const employeesReducer = (state = initialState, action) => {
@@ -11,11 +10,11 @@ const employeesReducer = (state = initialState, action) => {
         case GET_EMPLOYEES:
             return action.payload;
         case ADD_EMPLOYEE:
-            return action.payload;
-        default:
-            return {
-                ...state
-            }
+            return [
+                ...state,
+                Object.assign({}, action.payload)
+            ];
+        default: return state;
     }
 };
 
