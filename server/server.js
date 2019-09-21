@@ -11,7 +11,7 @@ const router = express.Router();
 const dbRoute =
     'mongodb+srv://tara:gRUL0ErIUTidJOyz@cluster0-avcto.mongodb.net/test?retryWrites=true&w=majority';
 
-mongoose.connect(dbRoute, { useNewUrlParser: true });
+mongoose.connect(dbRoute, { useNewUrlParser: true, useUnifiedTopology: true });
 let db = mongoose.connection;
 
 db.once('open', () => console.log('connected to the database'));
@@ -23,13 +23,14 @@ app.use(bodyParser.json());
 router.get('/employees', (req, res) => {
     Employee.find((err, data) => {
         if (err) return res.json({ success: false, error: err });
+        console.log('IN EMPLOYEES GET', data);
         return res.json({ success: true, data: data });
     });
 });
 
 router.post('/employees', (req, res) => {
     const employee = new Employee(req.body);
-
+    console.log('IN EMPLOYEES POST', employee);
     employee.save((err, employee) => {
         if (err) {
             res.send(err);

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getAllEmployees } from '../../state/actions';
 import { connect } from 'react-redux';
 import { Grid, Col } from 'react-flexbox-grid';
-import AddEmployeeComponent from '../../components/AddEmployeeComponent';
+import {EmployeeComponent} from "../../components/EmployeeComponent";
 
 
 const mapStateToProps = (state) => {
@@ -14,32 +15,39 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getEmployeesData: () => dispatch(getAllEmployees())
+        getAllEmployees: () => dispatch(getAllEmployees())
     }
 };
 
 export class EmployeeList extends Component {
 
     constructor(props){
-        super(props)
+        super(props);
         this.state = {
         }
     }
 
     componentWillMount(){
-        this.props.getEmployeesData();
+        this.props.getAllEmployees();
     }
 
     render(){
 
-        let title = 'My Company Employee Directory';
+        let title = 'Current Employee Directory';
 
         return (
             <Grid fluid>
                 <div>
                     <h2 id="title">{title}</h2>
                     <Col xs={9} md={3}>
-                        <AddEmployeeComponent/>
+                        <Link to="/add-employee" style={{color: 'black'}} activestyle={{color: 'red'}}>Add Employee</Link>
+                    </Col>
+                    <Col xs={9} md={3}>
+                        <ul>
+                            {this.props.employees && this.props.employees.map(employee => (
+                                <EmployeeComponent key={employee.id} employee={employee} />
+                            ))}
+                        </ul>
                     </Col>
                 </div>
             </Grid>
@@ -50,7 +58,7 @@ export class EmployeeList extends Component {
 }
 
 EmployeeList.propTypes = {
-    employees: PropTypes.array,
+    employees: PropTypes.object,
     getAllEmployees: PropTypes.func
 };
 
