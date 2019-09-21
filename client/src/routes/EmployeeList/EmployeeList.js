@@ -45,7 +45,7 @@ export class EmployeeList extends Component {
                     <Col xs={9} md={3}>
                         <ul>
                             {this.props.employees && this.props.employees.map(employee => (
-                                <EmployeeComponent key={employee.id} employee={employee} />
+                                <EmployeeComponent key={employee._id} employee={employee} />
                             ))}
                         </ul>
                     </Col>
@@ -58,7 +58,7 @@ export class EmployeeList extends Component {
 }
 
 EmployeeList.propTypes = {
-    employees: PropTypes.object,
+    employees: PropTypes.array,
     getAllEmployees: PropTypes.func
 };
 
