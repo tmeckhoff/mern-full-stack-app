@@ -23,10 +23,7 @@ const employeesReducer = (state = initialState.employees, action) => {
                 ...state,
                 Object.assign({}, action.employee)
             ];
-        default:
-            return {
-                ...state
-            }
+        default: return state;
     }
 };
 
