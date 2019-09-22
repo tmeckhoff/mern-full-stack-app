@@ -4,10 +4,10 @@ const Schema = mongoose.Schema;
 const EmployeeSchema = new Schema(
     {
         id: Number,
-        firstName: String,
-        lastName: String,
+        firstName: {type: String, required: true},
+        lastName: {type: String, required: true},
         jobTitle: String,
-        email: String,
+        email: {type: String, required: true},
         phoneNumber: String
     },
     { timestamps: true }

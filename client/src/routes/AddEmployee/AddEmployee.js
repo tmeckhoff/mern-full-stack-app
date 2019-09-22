@@ -19,17 +19,19 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export class AddEmployee extends Component {
-    handleChange(values) {console.log('VALUES in change', values);}
-    handleUpdate(form) {console.log('FORM in update', form);}
     handleSubmit(values) {
-       this.props.addEmployee(values);
-       this.props.history.push('/');
+        this.props.addEmployee(values);
+        this.props.history.push('/');
     }
 
     constructor(props){
         super(props);
         this.state = {
         }
+    }
+
+    cancelForm() {
+        this.props.history.push('/');
     }
 
     render() {
@@ -39,9 +41,7 @@ export class AddEmployee extends Component {
         };
 
         return (
-            <Form model="employee" onUpdate={(form) => this.handleUpdate(form)}
-                  onChange={(values) => this.handleChange(values)}
-                  onSubmit={(values) => this.handleSubmit(values)}>
+            <Form model="employee" onSubmit={(values) => this.handleSubmit(values)}>
                 <h4 style={{marginLeft: '20px'}}>Add Employee</h4>
                 <div className='field' style={inputStyle}>
                 <Control.text model=".firstName" component={TextField} controlProps={{
@@ -68,6 +68,9 @@ export class AddEmployee extends Component {
                     label: 'Phone Number'
                 }} />
                 </div>
+                <Button style={inputStyle} color="secondary" onClick={() => this.cancelForm()}>
+                    Cancel
+                </Button>
                 <Control.reset style={inputStyle} model="employee" type="reset" component={Button} >
                     Clear Values
                 </Control.reset>
