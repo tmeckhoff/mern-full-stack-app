@@ -13,7 +13,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 This Employee Directory is a Full Stack MERN (MongoDB, Express, React, Node.js) app.
 
-I kept the front end and back end as separate as possible. That way at a future date, they could be easily split apart into separate applications.
+I kept the front end and back end as separate as possible. That way at a future date, they could be easily split apart into separate applications. I also added configuration so that running `npm install` and `npm start` would install and run both applications.
 
 In the UI, I created 2 main routes, the default route of the Employee Directory view, and a form to add a new employee to the directory.
 
