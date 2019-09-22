@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getAllEmployees } from '../../state/actions';
+import {getAllEmployees, deleteEmployeeById} from '../../state/actions';
 import { connect } from 'react-redux';
 import {
     Table,
@@ -17,14 +17,14 @@ import {Link} from "react-router-dom";
 
 const mapStateToProps = (state) => {
     return {
-        employees: state.employees,
-        error: state.error
+        employees: state.employees
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        getAllEmployees: () => dispatch(getAllEmployees())
+        getAllEmployees: () => dispatch(getAllEmployees()),
+        deleteEmployeeById: id => dispatch(deleteEmployeeById(id))
     }
 };
 
@@ -40,7 +40,13 @@ export class EmployeeList extends Component {
         this.props.getAllEmployees();
     }
 
+
+    deleteEmployee(id){
+        this.props.deleteEmployeeById(id);
+    }
+
     render(){
+        const {employees} = this.props;
 
         return (
             <Paper style={{marginTop: '30px'}}>
@@ -57,11 +63,12 @@ export class EmployeeList extends Component {
                             <TableCell>Job Title</TableCell>
                             <TableCell>Email</TableCell>
                             <TableCell>Phone Number</TableCell>
+                            <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {this.props.employees && this.props.employees.map((employee, i) => (
-                            <EmployeeComponent key={i} employee={employee} />
+                        {employees && employees.map((employee, i) => (
+                            <EmployeeComponent key={i} employee={employee} onClick={() => this.deleteEmployee(employee._id)} />
                         ))}
                     </TableBody>
                 </Table>
@@ -75,7 +82,7 @@ export class EmployeeList extends Component {
 EmployeeList.propTypes = {
     employees: PropTypes.array,
     getAllEmployees: PropTypes.func,
-    error: PropTypes.object
+    deleteEmployeeById: PropTypes.func
 };
 
 

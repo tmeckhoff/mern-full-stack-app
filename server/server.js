@@ -11,7 +11,7 @@ const router = express.Router();
 const dbRoute =
     'mongodb+srv://tara:gRUL0ErIUTidJOyz@cluster0-avcto.mongodb.net/test?retryWrites=true&w=majority';
 
-mongoose.connect(dbRoute, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(dbRoute, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
 let db = mongoose.connection;
 
 db.once('open', () => console.log('connected to the database'));
@@ -35,6 +35,13 @@ router.post('/employees', (req, res) => {
         } else {
             res.send(employee);
         }
+    });
+});
+
+router.delete('/employees/:id', (req, res) => {
+    Employee.findByIdAndRemove(req.params.id, (err) => {
+        if (err) return res.send(err);
+        return res.json({ success: true });
     });
 });
 

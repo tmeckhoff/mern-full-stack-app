@@ -8,8 +8,7 @@ import { TextField } from '@material-ui/core';
 
 const mapStateToProps = (state) => {
     return {
-        employee: state.employee,
-        error: state.error
+        employee: state.employee
     }
 };
 
@@ -38,8 +37,6 @@ export class AddEmployee extends Component {
         const inputStyle = {
             margin: '20px'
         };
-
-        const { error, employee } = this.props;
 
         return (
             <Form model="employee" onUpdate={(form) => this.handleUpdate(form)}
@@ -85,8 +82,7 @@ export class AddEmployee extends Component {
 
 AddEmployee.propTypes = {
     employee: PropTypes.object,
-    addEmployee: PropTypes.func,
-    error: PropTypes.object
+    addEmployee: PropTypes.func
 };
 
 export default connect(
