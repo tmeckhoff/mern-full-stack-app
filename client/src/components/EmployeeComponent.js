@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { TableCell, TableRow } from '@material-ui/core';
 
 export class EmployeeComponent extends Component {
 
@@ -10,11 +11,15 @@ export class EmployeeComponent extends Component {
     }
 
     render(){
-
+        const { employee } = this.props;
         return (
-            <li>
-                {this.props.employee}
-            </li>
+            <TableRow key={`${employee.firstName}-${employee.lastName}-${employee._id}`}>
+                <TableCell>{employee.firstName}</TableCell>
+                <TableCell>{employee.lastName}</TableCell>
+                <TableCell>{employee.jobTitle ? employee.jobTitle : ''}</TableCell>
+                <TableCell>{employee.email}</TableCell>
+                <TableCell>{employee.phoneNumber ? employee.phoneNumber : ''}</TableCell>
+            </TableRow>
         );
 
     }

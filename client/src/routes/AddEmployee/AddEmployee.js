@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { Form, Control } from 'react-redux-form';
-import { TextField } from 'material-ui';
 import PropTypes from 'prop-types';
 import * as actions from '../../state/actions';
 import { connect } from 'react-redux';
-import RaisedButton from 'material-ui/RaisedButton';
+import Button from '@material-ui/core/Button';
+import { TextField } from '@material-ui/core';
 
 const mapStateToProps = (state) => {
     return {
-        employee: state.employee
+        employee: state.employee,
+        error: state.error
     }
 };
 
@@ -33,36 +34,49 @@ export class AddEmployee extends Component {
     }
 
     render() {
+
+        const inputStyle = {
+            margin: '20px'
+        };
+
+        const { error, employee } = this.props;
+
         return (
             <Form model="employee" onUpdate={(form) => this.handleUpdate(form)}
                   onChange={(values) => this.handleChange(values)}
                   onSubmit={(values) => this.handleSubmit(values)}>
-                <div className="field">
-                    <label>First name:</label>
-                <Control.text model=".firstName" component={TextField} required />
+                <h4 style={{marginLeft: '20px'}}>Add Employee</h4>
+                <div className='field' style={inputStyle}>
+                <Control.text model=".firstName" component={TextField} controlProps={{
+                    label: 'First Name'
+                }} required />
                 </div>
-                <div className="field">
-                    <label>Last name:</label>
-                <Control.text model=".lastName" component={TextField} required />
+                <div className='field' style={inputStyle}>
+                <Control.text model=".lastName" component={TextField} controlProps={{
+                    label: 'Last Name'
+                }} required />
                 </div>
-                <div className="field">
-                    <label>Job Title:</label>
-                <Control.text model=".jobTitle" component={TextField} />
+                <div className='field' style={inputStyle}>
+                <Control.text model=".jobTitle" component={TextField} controlProps={{
+                    label: 'Job Title'
+                }} />
                 </div>
-                <div className="field">
-                    <label>Email:</label>
-                <Control.text model=".email" component={TextField} required />
+                <div className='field' style={inputStyle}>
+                <Control.text model=".email" component={TextField} controlProps={{
+                    label: 'Email'
+                }} required />
                 </div>
-                <div className="field">
-                    <label>Phone Number:</label>
-                <Control.text model=".phoneNumber" component={TextField} />
+                <div className='field' style={inputStyle}>
+                <Control.text model=".phoneNumber" component={TextField} controlProps={{
+                    label: 'Phone Number'
+                }} />
                 </div>
-                <RaisedButton type="submit">
-                    Submit
-                </RaisedButton>
-                <Control.reset model="employee" type="reset" component={RaisedButton} >
+                <Control.reset style={inputStyle} model="employee" type="reset" component={Button} >
                     Clear Values
                 </Control.reset>
+                <Button style={inputStyle} variant="contained" color="primary" type="submit">
+                    Submit
+                </Button>
             </Form>
         );
 
@@ -71,9 +85,9 @@ export class AddEmployee extends Component {
 
 AddEmployee.propTypes = {
     employee: PropTypes.object,
-    addEmployee: PropTypes.func
+    addEmployee: PropTypes.func,
+    error: PropTypes.object
 };
-
 
 export default connect(
     mapStateToProps, mapDispatchToProps

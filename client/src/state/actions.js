@@ -11,7 +11,8 @@ const getEmployees = employees => ({
 });
 
 const getEmployeesError = (err) => ({
-    type: GET_EMPLOYEES_ERROR, err,
+    type: GET_EMPLOYEES_ERROR,
+    error: err
 });
 
 const addEmployee = employee => ({
@@ -20,7 +21,8 @@ const addEmployee = employee => ({
 });
 
 const addEmployeeError = (err) => ({
-    type: ADD_EMPLOYEE_ERROR, err,
+    type: ADD_EMPLOYEE_ERROR,
+    error: err
 });
 
 export const getAllEmployees = () => {

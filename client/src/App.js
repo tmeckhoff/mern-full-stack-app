@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import * as routes from './routes';
-import { Router, Route } from 'react-router-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {Router, Route} from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import reducer from './state/reducer';
 import { createBrowserHistory } from 'history';
-
+import {MuiThemeProvider} from "@material-ui/core";
+import { createMuiTheme } from '@material-ui/core/styles';
+import { AppBar, Typography, Toolbar } from '@material-ui/core';
 const history = createBrowserHistory();
 
 
@@ -27,14 +28,26 @@ class App extends Component {
 
 
     render() {
+        const theme = createMuiTheme({
+            palette: {
+                type: 'light',
+            },
+        });
+
         return (
             <Provider store={store}>
-                <MuiThemeProvider>
+                <MuiThemeProvider theme={theme}>
                     <div>
-                        <h1>Employee Directory</h1>
+                        <AppBar position="static">
+                            <Toolbar>
+                               <Typography variant="h6">
+                                   Employee Directory
+                               </Typography>
+                            </Toolbar>
+                        </AppBar>
                         <main>
                             <Router history={history}>
-                                <Route path="/" component={routes.EmployeeList} />
+                                <Route exact path="/" component={routes.EmployeeList} />
                                 <Route path="/add-employee" component={routes.AddEmployee} />
                             </Router>
                         </main>

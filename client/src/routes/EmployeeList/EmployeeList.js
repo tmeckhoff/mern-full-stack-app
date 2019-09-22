@@ -1,15 +1,24 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getAllEmployees } from '../../state/actions';
 import { connect } from 'react-redux';
-import { Grid, Col } from 'react-flexbox-grid';
-import {EmployeeComponent} from "../../components/EmployeeComponent";
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableRow,
+    Paper,
+    Button
+} from '@material-ui/core';
+import {EmployeeComponent} from '../../components/EmployeeComponent';
+import {Link} from "react-router-dom";
 
 
 const mapStateToProps = (state) => {
     return {
-        employees: state.employees
+        employees: state.employees,
+        error: state.error
     }
 };
 
@@ -27,30 +36,36 @@ export class EmployeeList extends Component {
         }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.props.getAllEmployees();
     }
 
     render(){
 
-        let title = 'Current Employee Directory';
-
         return (
-            <Grid fluid>
-                <div>
-                    <h2 id="title">{title}</h2>
-                    <Col xs={9} md={3}>
-                        <Link to="/add-employee" style={{color: 'black'}} activestyle={{color: 'red'}}>Add Employee</Link>
-                    </Col>
-                    <Col xs={9} md={3}>
-                        <ul>
-                            {this.props.employees && this.props.employees.map(employee => (
-                                <EmployeeComponent key={employee._id} employee={employee} />
-                            ))}
-                        </ul>
-                    </Col>
-                </div>
-            </Grid>
+            <Paper style={{marginTop: '30px'}}>
+                <Link to="/add-employee" style={{textDecoration: 'none'}}>
+                    <Button variant="outlined" color="primary">
+                        Add Employee
+                    </Button>
+                    </Link>
+                <Table style={{marginTop: '50px'}}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>First name</TableCell>
+                            <TableCell>Last name</TableCell>
+                            <TableCell>Job Title</TableCell>
+                            <TableCell>Email</TableCell>
+                            <TableCell>Phone Number</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {this.props.employees && this.props.employees.map((employee, i) => (
+                            <EmployeeComponent key={i} employee={employee} />
+                        ))}
+                    </TableBody>
+                </Table>
+            </Paper>
         );
 
     }
@@ -59,7 +74,8 @@ export class EmployeeList extends Component {
 
 EmployeeList.propTypes = {
     employees: PropTypes.array,
-    getAllEmployees: PropTypes.func
+    getAllEmployees: PropTypes.func,
+    error: PropTypes.object
 };
 
 
