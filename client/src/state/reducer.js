@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import {GET_EMPLOYEES, ADD_EMPLOYEE, DELETE_EMPLOYEE, FILTER_EMPLOYEES} from './actions';
+import {GET_EMPLOYEES, ADD_EMPLOYEE, DELETE_EMPLOYEE} from './actions';
 import { createForms } from 'react-redux-form';
 
 const initialState = {
