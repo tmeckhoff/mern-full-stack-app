@@ -17,7 +17,7 @@ Front End and Back End were kept as separate as possible. That way at a future d
 
 In the Front End I created 2 main routes, the default route of the Employee Directory list view, and a Add New Employee to the directory view.
 
-The initial design of the Employee schema include firstName, lastName, jobTitle, email and phoneNumber. With firstName, lastName and email being required, both in UI and the back end.
+The design of the Employee schema includes firstName, lastName, jobTitle, email and phoneNumber. With firstName, lastName and email being required, both in UI and the back end.
 
 The application has the ability to Read, Create and Delete Employee documents.
 
