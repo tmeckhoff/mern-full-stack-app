@@ -15,7 +15,7 @@ This Employee Directory is a Full Stack MERN (MongoDB, Express, React, Node.js) 
 
 Front End and Back End were kept as separate as possible. That way at a future date, they could be easily split apart into separate applications. I added configurations so that running `npm install` and `npm start` would install and run both at the same time.
 
-In the Front End I created 2 main routes, the default route of the Employee Directory list view, and a Add New Employee to the directory view.
+In the Front End I created 2 main routes, the default route of the Employee Directory list view, and a Add New Employee view.
 
 The design of the Employee schema includes firstName, lastName, jobTitle, email and phoneNumber. With firstName, lastName and email being required, both in UI and the back end.
 
