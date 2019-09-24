@@ -1,4 +1,4 @@
-# MERN full-stack-app
+# MERN Full Stack App
 
 
 ### Instructions for how to run the program
