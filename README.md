@@ -1,4 +1,4 @@
-# full-stack-app
+# MERN Full Stack App
 
 
 ### Instructions for how to run the program
@@ -13,30 +13,25 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 This Employee Directory is a Full Stack MERN (MongoDB, Express, React, Node.js) app.
 
-I kept the front end and back end as separate as possible. That way at a future date, they could be easily split apart into separate applications. I also added configuration so that running `npm install` and `npm start` would install and run both applications.
+Front End and Back End were kept as separate as possible. That way at a future date, they could be easily split apart into separate applications. I added configurations so that running `npm install` and `npm start` would install and run both at the same time.
 
-In the UI I created 2 main routes, the default route of the Employee Directory view, and a form to add a new employee to the directory.
+In the Front End I created 2 main routes, the default route of the Employee Directory list view, and a Add New Employee view.
 
-The design of the Employee model included firstName, lastName, jobTitle, email and phoneNumber. I made firstName, lastName and email required, both on UI and backend.
+The design of the Employee schema includes firstName, lastName, jobTitle, email and phoneNumber. With firstName, lastName and email being required, both in UI and the back end.
 
 The application has the ability to Read, Create and Delete Employee documents.
 
-For the visual design I used Material-UI. I spent some time styling it to make it look more production ready.
+For the visual design I used Material-UI.
 
-### What I would do with more time
+### Future Plans
 
-##### Add error handling
-I originally created error actions and added them to the reducer for the GET and POST methods. My plan was to create an ErrorComponent using SnackBar from Material-UI to display the error messages.
+Add update functionality
 
-##### Update functionality
-I wanted to make a fully functional CRUD app but ran out of time on the update functionality. My original plan was to create a form component that could be used in both Update and Add Employee routes but since I ran out of time, I left the form in the AddEmployee route for now.
+Add search functionality
 
-##### Form validations
-I added HTML validations for the required fields but wanted to add react/redux form validations to do that, in addition to validating on minLength and format for email and phone number.
+Add additional form validations
 
-##### Search
-I worked on adding this and was real close to having it fully functional but ended up having to pull it out. 
+Add error handling/displaying errors to end user
 
-##### Tests
-I wanted to add some basic Jest unit tests.
- 
+Add Jest unit tests
+
