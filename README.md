@@ -25,8 +25,6 @@ For the visual design I used Material-UI.
 
 ### Future Plans
 
-Add update functionality
-
 Add search functionality
 
 Add additional form validations
