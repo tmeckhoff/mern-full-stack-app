@@ -22,3 +22,14 @@ The design of the Employee schema includes firstName, lastName, jobTitle, email 
 The application has the ability to Read, Create and Delete Employee documents.
 
 For the visual design I used Material-UI.
+
+### Future Plans
+
+Add update functionality
+
+Add search functionality
+
+Add error handling/displaying errors to end user
+
+Add Jest unit tests
+
