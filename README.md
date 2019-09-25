@@ -29,6 +29,8 @@ Add update functionality
 
 Add search functionality
 
+Add additional form validations
+
 Add error handling/displaying errors to end user
 
 Add Jest unit tests
