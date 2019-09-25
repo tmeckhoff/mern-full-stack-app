@@ -19,7 +19,7 @@ In the Front End I created 2 main routes, the default route of the Employee Dire
 
 The design of the Employee schema includes firstName, lastName, jobTitle, email and phoneNumber. With firstName, lastName and email being required, both in UI and the back end.
 
-The application has the ability to Read, Create and Delete Employee documents.
+The application has the ability to Read, Create, Update and Delete Employee documents.
 
 For the visual design I used Material-UI.
 
