@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import {GET_EMPLOYEES, ADD_EMPLOYEE, DELETE_EMPLOYEE} from './actions';
+import {GET_EMPLOYEES, ADD_EMPLOYEE, DELETE_EMPLOYEE, UPDATE_EMPLOYEE, SET_SELECTED_EMPLOYEE} from './actions';
 import { createForms } from 'react-redux-form';
 
 const initialState = {
@@ -26,6 +26,17 @@ const employeesReducer = (state = initialState.employees, action) => {
             return [
                 ...state,
                 Object.assign({}, action.employee)
+            ];
+        case UPDATE_EMPLOYEE:
+            return [...state.map(employee => {
+                if (employee._id === action.employee._id) {
+                    return action.employee;
+                };
+                return employee;
+            })];
+        case SET_SELECTED_EMPLOYEE:
+            return [
+                Object.assign(initialState.employee, action.employee)
             ];
         default: return state;
     }

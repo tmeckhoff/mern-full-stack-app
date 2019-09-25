@@ -38,6 +38,16 @@ router.post('/employees', (req, res) => {
     });
 });
 
+router.put('/employees/:id', (req, res) => {
+   Employee.findByIdAndUpdate(req.body._id, req.body, (err, employee) => {
+        if (err) {
+            res.send(err);
+        } else {
+            res.send(employee);
+        }
+    });
+});
+
 router.delete('/employees/:id', (req, res) => {
     Employee.findByIdAndRemove(req.params.id, (err) => {
         if (err) return res.send(err);

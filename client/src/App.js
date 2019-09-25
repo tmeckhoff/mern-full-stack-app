@@ -48,7 +48,8 @@ class App extends Component {
                         <main>
                             <Router history={history}>
                                 <Route exact path="/" component={routes.EmployeeList} />
-                                <Route path="/add-employee" component={routes.AddEmployee} />
+                                <Route path="/employees/add" component={routes.AddEmployee} />
+                                <Route path="/employees/edit/:_id" component={routes.EditEmployee} />
                             </Router>
                         </main>
                     </div>

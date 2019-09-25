@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {getAllEmployees, deleteEmployeeById} from '../../state/actions';
+import {getAllEmployees, deleteEmployeeById, setSelectedEmployee} from '../../state/actions';
 import { connect } from 'react-redux';
 import {
     Table,
@@ -24,7 +24,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         getAllEmployees: () => dispatch(getAllEmployees()),
-        deleteEmployeeById: id => dispatch(deleteEmployeeById(id))
+        deleteEmployeeById: id => dispatch(deleteEmployeeById(id)),
+        setSelectedEmployee: employee => dispatch(setSelectedEmployee(employee))
     }
 };
 
@@ -45,12 +46,16 @@ export class EmployeeList extends Component {
         this.props.deleteEmployeeById(id);
     }
 
+    selectEmployee(employee){
+        this.props.setSelectedEmployee(employee);
+    }
+
     render(){
-        const {employees} = this.props;
+        const { employees, history } = this.props;
 
         return (
             <Paper style={{marginTop: '30px'}}>
-                <Link to="/add-employee" style={{textDecoration: 'none'}}>
+                <Link to="/employees/add" style={{textDecoration: 'none'}}>
                     <Button variant="outlined" color="primary">
                         Add Employee
                     </Button>
@@ -64,11 +69,12 @@ export class EmployeeList extends Component {
                             <TableCell>Email</TableCell>
                             <TableCell>Phone Number</TableCell>
                             <TableCell></TableCell>
+                            <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {employees && employees.map((employee, i) => (
-                            <EmployeeComponent key={i} employee={employee} onClick={() => this.deleteEmployee(employee._id)} />
+                            <EmployeeComponent key={i} employee={employee} history={history} onClickDelete={() => this.deleteEmployee(employee._id)} onClickEdit={() => this.selectEmployee(employee)} />
                         ))}
                     </TableBody>
                 </Table>
@@ -82,7 +88,8 @@ export class EmployeeList extends Component {
 EmployeeList.propTypes = {
     employees: PropTypes.array,
     getAllEmployees: PropTypes.func,
-    deleteEmployeeById: PropTypes.func
+    deleteEmployeeById: PropTypes.func,
+    setSelectedEmployee: PropTypes.func
 };
 
 
